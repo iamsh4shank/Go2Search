@@ -11,34 +11,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>Go2Search</title>
+    <title>Go2Search | Login</title>
 </head>
 
 <body>
-
-    <div class='container' style='margin-top: 300px;'>
-
+    <div class="container" style="margin-top: 300px;">
         <div class='row text-center'>
             <div class='col-lg-12'>
                 <h3>Go2Search</h3>
             </div>
         </div>
-        <div class='row text-center'>
-            <div class='col-lg-12'>
-                {% if user.is_authenticated %}
-                <button type="button" onclick="location.href='{% url 'logout' %}'"
-                    class="btn btn-primary btn-lg">Logout</button>
-                <button type="button" class="btn btn-secondary btn-lg">Dashboard</button>
-                {% else %}
-                <button type="button" onclick="location.href='{% url 'login' %}'"
-                    class="btn btn-primary btn-lg">Login</button>
-                <button type="button" onclick="location.href='{% url 'signup' %}'"
-                    class="btn btn-secondary btn-lg">Create Account</button>
-                {% endif %}
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" placeholder="Enter username" name="username">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your credentials with
+                            anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    </div>
+                    <button style='margin-top:20px' type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <br>
+                {% for message in messages %}
+                <h5 style="margin-top: 10px; color:red">{{message}}</h5>
+                {% endfor %}
             </div>
         </div>
     </div>
-
 
 
     <!-- Optional JavaScript; choose one of the two! -->
